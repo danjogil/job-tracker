@@ -6,8 +6,8 @@ const Stats = () => {
   ];
 
   const statsTwo = [
-    { title: "Interviews", value: "2" },
-    { title: "Offers", value: "1" },
+    { title: "Interviewing", value: "2" },
+    { title: "Negotiating", value: "1" },
     { title: "Accepted", value: "0" },
   ];
 
