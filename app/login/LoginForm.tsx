@@ -81,15 +81,26 @@ const RegisterForm = () => {
           className="btn btn-outline"
           disabled={isLoading}
         >
-          {<FcGoogle />} Google
+          {<FcGoogle />} Continue with Google
         </button>
         <button
           onClick={() => signIn("github")}
           className="btn btn-outline"
           disabled={isLoading}
         >
-          {<AiFillGithub />} Github
+          {<AiFillGithub />} Continue with Github
         </button>
+      </div>
+      <div className="text-neutral-500 text-center mt-4 font-light">
+        <div className="justify-center flex flex-col sm:flex-row items-center gap-2">
+          <div>First time using Job Tracker?</div>
+          <div
+            onClick={() => router.push("/register")}
+            className="text-neutral-800 cursor-pointer hover:underline"
+          >
+            Create an account
+          </div>
+        </div>
       </div>
     </>
   );
