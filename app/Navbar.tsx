@@ -21,66 +21,58 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         <Logo />
       </div>
       <div className="flex-none gap-2">
-        {!currentUser ? (
-          <>
-            <div className="dropdown dropdown-end block md:hidden">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle"
-              >
-                <HiOutlineMenuAlt2 size={24} />
-              </div>
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+            <HiOutlineMenuAlt2 size={24} />
+          </div>
 
-              <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <div className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 flex gap-3">
+            {currentUser ? (
+              <>
+                <div className="p-2 flex justify-center items-center gap-5">
+                  <p className="font-semibold text-lg">{currentUser?.name}</p>
+                  <div className="avatar">
+                    <div className="w-10 rounded">
+                      <Image
+                        src={currentUser?.image || "/images/placeholder.jpg"}
+                        alt="Avatar"
+                        fill
+                        className="rounded-full border"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <ul className="flex flex-col gap-2">
+                  <li>
+                    <button
+                      className="py-2 px-4 font-medium"
+                      onClick={() => {
+                        signOut();
+                        router.push("/");
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <ul className="flex flex-col gap-2">
                 <li>
-                  <Link href="/login">Login</Link>
+                  <Link className="py-2 px-4 font-medium" href="/login">
+                    Login
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/register">Register</Link>
+                  <Link className="py-2 px-4 font-medium" href="/register">
+                    Register
+                  </Link>
                 </li>
               </ul>
-            </div>
-            <button
-              onClick={() => router.push("/login")}
-              className="justify-center items-center gap-3 cursor-pointer btn btn-ghost text-lg hidden md:flex"
-            >
-              Login
-            </button>
-          </>
-        ) : (
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar border border-neutral-300"
-            >
-              <div className="w-8 rounded-full">
-                <Image
-                  src={currentUser?.image || "/images/placeholder.jpg"}
-                  alt="Avatar"
-                  fill
-                  className="rounded-full"
-                />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a
-                  onClick={() => {
-                    signOut();
-                    router.push("/");
-                  }}
-                >
-                  Logout
-                </a>
-              </li>
-            </ul>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
