@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "./Logo";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
@@ -18,7 +20,7 @@ const Navbar = () => {
               <Link href="/">Login</Link>
             </li>
             <li>
-              <Link href="/">Register</Link>
+              <Link href="/register">Register</Link>
             </li>
           </ul>
         </div>
