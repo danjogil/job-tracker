@@ -9,8 +9,10 @@ import { FaUser, FaKey } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -27,11 +29,11 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
     axios
       .post("/api/register", data)
       .then(() => {
         console.log("success");
+        router.push("/dashboard");
       })
       .catch(() => {
         console.log("error");
@@ -43,10 +45,37 @@ const RegisterForm = () => {
 
   return (
     <>
-      <form className="flex flex-col gap-3">
-        <Input title="Email" type="text" icon={IoMdMail} />
-        <Input title="Name" type="text" icon={FaUser} />
-        <Input title="Password" type="password" icon={FaKey} />
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+        <Input
+          id="name"
+          label="Name"
+          type="text"
+          icon={FaUser}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="email"
+          label="Email"
+          type="text"
+          icon={IoMdMail}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="password"
+          label="Password"
+          type="password"
+          icon={FaKey}
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
         <button className="btn btn-neutral" disabled={isLoading}>
           Continue
         </button>
