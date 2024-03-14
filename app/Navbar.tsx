@@ -4,7 +4,7 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
 const Navbar = () => {
   return (
-    <nav className="navbar bg-base-100 border-b shadow-md p-3">
+    <nav className="navbar bg-base-100 shadow p-3 mb-5">
       <div className="flex-1">
         <Logo />
       </div>
