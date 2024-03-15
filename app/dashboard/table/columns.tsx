@@ -12,8 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export type Job = {
+  id: string;
   title: string | null;
   company: string | null;
   salary: string | null;
@@ -86,7 +88,9 @@ export const columns: ColumnDef<Job>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Open</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/${job.id}`}>Open</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
