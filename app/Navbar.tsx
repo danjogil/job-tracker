@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <nav className="navbar bg-base-100 shadow p-3 mb-5 fixed z-10">
       <div className="flex-1">
-        <Logo />
+        <Logo currentUser={currentUser} />
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

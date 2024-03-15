@@ -213,7 +213,7 @@ const NewJobForm = () => {
                   <FormLabel className="font-semibold">Salary</FormLabel>
                   <FormControl>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Salary"
                       className="input input-bordered w-full max-w-xl"
                       {...field}

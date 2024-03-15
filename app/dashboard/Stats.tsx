@@ -1,39 +1,46 @@
 import prisma from "@/app/libs/prismadb";
+import { User } from "@prisma/client";
 
-const Stats = async () => {
+const Stats = async ({ currentUser }: { currentUser?: User | null }) => {
   const applying = await prisma.job.findMany({
     where: {
       status: "APPLYING",
+      userId: currentUser?.id,
     },
   });
 
   const applied = await prisma.job.findMany({
     where: {
       status: "APPLIED",
+      userId: currentUser?.id,
     },
   });
 
   const rejected = await prisma.job.findMany({
     where: {
       status: "REJECTED",
+      userId: currentUser?.id,
     },
   });
 
   const interviewing = await prisma.job.findMany({
     where: {
       status: "INTERVIEWING",
+      userId: currentUser?.id,
     },
   });
 
   const negotiating = await prisma.job.findMany({
     where: {
       status: "NEGOTIATING",
+      userId: currentUser?.id,
     },
   });
 
   const accepted = await prisma.job.findMany({
     where: {
       status: "ACCEPTED",
+      userId: currentUser?.id,
     },
   });
 
