@@ -52,7 +52,7 @@ model Job {
   company       String?
   salary        String?
   location      String?
-  dateApplied   DateTime?
+  dateApplied   DateTime
   comment       String?
   jobPostingUrl String?
   status        Status
