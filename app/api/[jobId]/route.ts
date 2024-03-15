@@ -1,8 +1,5 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import authOptions from "@/app/auth/authOptions";
 import prisma from "@/app/libs/prismadb";
-
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
@@ -50,4 +47,25 @@ export async function PATCH(
   });
 
   return NextResponse.json(updatedJob);
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { jobId: string } }
+) {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) return NextResponse.error();
+
+  const job = await prisma.job.findUnique({
+    where: { id: params.jobId, userId: currentUser?.id },
+  });
+
+  if (!job) return NextResponse.json({ error: "Invalid job" }, { status: 404 });
+
+  await prisma.job.delete({
+    where: { id: job.id },
+  });
+
+  return NextResponse.json({});
 }
