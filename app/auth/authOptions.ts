@@ -60,6 +60,11 @@ const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async redirect({ baseUrl }) {
+      return baseUrl + "/dashboard";
+    },
+  },
 };
 
 export default authOptions;
