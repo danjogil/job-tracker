@@ -30,6 +30,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Job, Status } from "@prisma/client";
+import EmptyState from "../components/EmptyState";
 
 const formSchema = z.object({
   title: z.string(),
@@ -85,6 +86,8 @@ const EditJobForm: React.FC<Props> = ({ job, jobId }) => {
         setIsLoading(false);
       });
   }
+
+  if (!job) return <EmptyState />;
 
   return (
     <Form {...form}>
