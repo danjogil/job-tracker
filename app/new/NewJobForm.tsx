@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,13 +25,17 @@ import {
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   title: z.string(),
   company: z.string(),
   jobPostingUrl: z.string(),
   location: z.string(),
-  date: z.date({
+  dateApplied: z.date({
     required_error: "A date is required.",
   }),
   salary: z.string(),
@@ -42,6 +45,10 @@ const formSchema = z.object({
 });
 
 const NewJobForm = () => {
+  const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,12 +60,26 @@ const NewJobForm = () => {
       description: "",
       comment: "",
       status: "APPLYING",
-      date: new Date(),
+      dateApplied: new Date(),
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    axios
+      .post("/api/job", data)
+      .then(() => {
+        toast.success("New Job Added!");
+        router.push("/dashboard");
+        router.refresh();
+        // reset();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   return (
@@ -145,7 +166,7 @@ const NewJobForm = () => {
             />
             <FormField
               control={form.control}
-              name="date"
+              name="dateApplied"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
                   <FormLabel>Date</FormLabel>
@@ -266,6 +287,7 @@ const NewJobForm = () => {
             <button
               type="submit"
               className="btn btn-neutral w-full md:max-w-xl"
+              disabled={isLoading}
             >
               Create New Job
             </button>

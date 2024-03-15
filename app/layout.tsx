@@ -4,6 +4,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
 import getCurrentUser from "./actions/getCurrentUser";
+import ToasterProvider from "./providers/ToasterProvider";
 
 const font = Nunito({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToasterProvider />
         <Navbar currentUser={currentUser} />
         <main>{children}</main>
       </body>
