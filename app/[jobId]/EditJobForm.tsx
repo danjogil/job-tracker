@@ -47,9 +47,10 @@ const formSchema = z.object({
 
 interface Props {
   job: Job | null;
+  jobId: string;
 }
 
-const EditJobForm: React.FC<Props> = ({ job }) => {
+const EditJobForm: React.FC<Props> = ({ job, jobId }) => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -72,12 +73,10 @@ const EditJobForm: React.FC<Props> = ({ job }) => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true);
     axios
-      .post("/api/job", data)
+      .patch("/api/" + jobId, data)
       .then(() => {
-        toast.success("New Job Added!");
-        router.push("/dashboard");
+        toast.success("Changes Saved!");
         router.refresh();
-        // reset();
       })
       .catch(() => {
         toast.error("Something went wrong.");

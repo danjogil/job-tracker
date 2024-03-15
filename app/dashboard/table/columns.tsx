@@ -88,9 +88,11 @@ export const columns: ColumnDef<Job>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <Link href={`/${job.id}`}>Open</Link>
-            </DropdownMenuItem>
+            <Link href={`/${job.id}`}>
+              <DropdownMenuItem className="cursor-pointer">
+                Open
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
