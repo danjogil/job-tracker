@@ -240,7 +240,7 @@ const EditJobForm: React.FC<Props> = ({ job, jobId }) => {
                   <FormLabel className="font-semibold">Status</FormLabel>
                   <FormControl>
                     <select
-                      className="select select-bordered w-full max-w-xs"
+                      className="select select-bordered w-full max-w-xl"
                       {...field}
                     >
                       <option value="APPLYING">Applying</option>

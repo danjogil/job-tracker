@@ -23,8 +23,8 @@ const DashboardPage = async () => {
   return (
     <div className="flex flex-col justify-center items-center px-4 gap-2 lg:gap-5 pt-24 space-y-2 lg:space-y-0">
       <Stats currentUser={currentUser} />
-      <Link href="/jobs/new" className="btn">
-        Add job
+      <Link href="/jobs/new" className="btn w-full max-w-xs font-bold">
+        Add Job
       </Link>
       <div className="w-full max-w-5xl">
         <DataTable columns={columns} data={formattedJobs} />
