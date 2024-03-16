@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MdWorkspaces } from "react-icons/md";
 
 export default function Home() {
   return (
     <div className="pt-24 px-4 flex flex-col items-center h-screen justify-end md:justify-between">
-      <div className="grow flex justify-center items-center">
+      <div className="grow flex justify-center items-center space-x-5">
+        <MdWorkspaces size={60} />
         <h2 className="uppercase font-bold xl:text-6xl lg:text-5xl z-20 md:text-4xl sm:text-3xl text-xl drop-shadow-md hidden md:block">
           Job Tracker
         </h2>
@@ -33,7 +35,8 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="z-20 flex flex-col items-center font-bold text-3xl uppercase mb-5 md:hidden">
+      <div className="z-20 flex items-center font-bold text-3xl uppercase mb-5 md:hidden space-x-3">
+        <MdWorkspaces size={36} />
         <h2>Job Tracker</h2>
       </div>
 
