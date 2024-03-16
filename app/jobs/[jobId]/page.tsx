@@ -1,4 +1,5 @@
-import getCurrentUser from "../actions/getCurrentUser";
+import getCurrentUser from "../../actions/getCurrentUser";
+import EmptyState from "../../components/EmptyState";
 import EditJobForm from "./EditJobForm";
 import prisma from "@/app/libs/prismadb";
 
@@ -8,6 +9,13 @@ interface Props {
 
 const JobPage: React.FC<Props> = async ({ params }) => {
   const currentUser = await getCurrentUser();
+
+  if (params.jobId.length !== 24)
+    return (
+      <div className="pt-24">
+        <EmptyState />;
+      </div>
+    );
 
   const job = await prisma.job.findUnique({
     where: {

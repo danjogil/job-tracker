@@ -36,14 +36,14 @@ const ActionMenu = ({ id }: { id: string }) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="ml-[-35px] md:ml-0">
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Open menu</span>
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <Link href={`/${id}`}>
+        <Link href={`/jobs/${id}`}>
           <DropdownMenuItem className="cursor-pointer">Open</DropdownMenuItem>
         </Link>
         <AlertDialog>

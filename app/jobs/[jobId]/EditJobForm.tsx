@@ -30,7 +30,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Job, Status } from "@prisma/client";
-import EmptyState from "../components/EmptyState";
+import EmptyState from "../../components/EmptyState";
 
 const formSchema = z.object({
   title: z.string(),
