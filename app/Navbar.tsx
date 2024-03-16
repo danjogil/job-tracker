@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const router = useRouter();
 
   return (
-    <nav className="navbar bg-base-100 shadow p-3 mb-5 fixed z-10">
+    <nav className="navbar bg-base-100 shadow p-3 mb-5 fixed z-50">
       <div className="flex-1">
         <Logo currentUser={currentUser} />
       </div>
